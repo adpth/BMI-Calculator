@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+    <string name="_18_5_25_kg_m2">18.5 – 25 kg/m2</string>
+    <string name="normal_bmi_range">Normal BMI range:</string>
+    <string name="recalculate">Recalculate your BMI</string>
+    <string name="calculate">Calculate your BMI</string>
+    <string name="weight">WEIGHT</string>
+    <string name="age">AGE</string>
+    <string name="height">HEIGHT</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="plus">plus</string>
+    <string name="minus">minus</string>
+    <string name="_0cm">0cm</string>
+    <string name="_50">50</string>
+    <string name="_19">19</string>
+    <string name="your_result">Your Result</string>
+    <string name="your_age">Your Age</string>
+    <string name="cm">cm</string>
+</resources>
