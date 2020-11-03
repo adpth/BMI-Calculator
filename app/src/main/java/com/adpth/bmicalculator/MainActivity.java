@@ -9,43 +9,54 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.adpth.bmicalculator.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
     float height,weight;
+    TextView height_txt,age;
     int count_weight = 50,count_age = 19;
+    RelativeLayout weight_plus, weight_minus, age_plus, age_minus;
     boolean male_clk = true, female_clk = true, check1 = true, check2 = true;
-    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+        setContentView(R.layout.activity_main);
 
-        binding.cardViewMale.setOnClickListener(new View.OnClickListener() {
+        height_txt = findViewById(R.id.height_txt);
+
+        final TextView female_text = findViewById(R.id.female);
+        final TextView male_text = findViewById(R.id.male);
+
+        CardView card_female = findViewById(R.id.cardView_female);
+        CardView card_male = findViewById(R.id.cardView_male);
+
+        age_minus = findViewById(R.id.age_minus);
+        age_plus = findViewById(R.id.age_plus);
+
+        weight_minus = findViewById(R.id.weight_minus);
+        weight_plus = findViewById(R.id.weight_plus);
+
+        card_male.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (check1) {
 
                     if (male_clk) {
 
-                        binding.male.setTextColor(Color.parseColor("#FFFFFF"));
-                        binding.male.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.male_white,0,0);
+                        male_text.setTextColor(Color.parseColor("#FFFFFF"));
+                        male_text.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.male_white,0,0);
                         male_clk = false;
                         check2 = false;
 
                     } else {
 
-                        binding.male.setTextColor(Color.parseColor("#8D8E99"));
-                        binding.male.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.male,0,0);
+                        male_text.setTextColor(Color.parseColor("#8D8E99"));
+                        male_text.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.male,0,0);
                         male_clk = true;
                         check2 = true;
                     }
@@ -53,20 +64,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.cardViewFemale.setOnClickListener(new View.OnClickListener() {
+        card_female.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (check2) {
                     if (female_clk) {
-                        binding.female.setTextColor(Color.parseColor("#FFFFFF"));
-                        binding.female.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.female_white,0,0);
+                        female_text.setTextColor(Color.parseColor("#FFFFFF"));
+                        female_text.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.female_white,0,0);
                         female_clk = false;
                         check1 = false;
                     }
                     else  {
 
-                        binding.female.setTextColor(Color.parseColor("#8D8E99"));
-                        binding.female.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.female,0,0);
+                        female_text.setTextColor(Color.parseColor("#8D8E99"));
+                        female_text.setCompoundDrawablesWithIntrinsicBounds(0,R.drawable.female,0,0);
                         female_clk = true;
                         check1 = true;
                     }
@@ -80,7 +91,8 @@ public class MainActivity extends AppCompatActivity {
 
         CheckAge();
 
-        binding.calculate.setOnClickListener(new View.OnClickListener() {
+        Button calculate = findViewById(R.id.calculate);
+        calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CalculateBMI();
@@ -92,52 +104,57 @@ public class MainActivity extends AppCompatActivity {
 
     private void CheckAge() {
 
-        binding.agePlus.setOnClickListener(new View.OnClickListener() {
+        age = findViewById(R.id.age);
+
+        age_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count_age++;
-                binding.age.setText(String.valueOf(count_age));
+                age.setText(String.valueOf(count_age));
             }
         });
 
-        binding.ageMinus.setOnClickListener(new View.OnClickListener() {
+        age_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count_age--;
-                binding.age.setText(String.valueOf(count_age));
+                age.setText(String.valueOf(count_age));
             }
         });
     }
 
     private void CheckWeight() {
 
-        binding.weightPlus.setOnClickListener(new View.OnClickListener() {
+        final TextView weight_txt = findViewById(R.id.weight);
+
+        weight_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count_weight++;
-                binding.weight.setText(String.valueOf(count_weight));
+                weight_txt.setText(String.valueOf(count_weight));
             }
         });
 
-        binding.weightMinus.setOnClickListener(new View.OnClickListener() {
+        weight_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 count_weight--;
-                binding.weight.setText(String.valueOf(count_weight));
+                weight_txt.setText(String.valueOf(count_weight));
             }
         });
 
-        weight = Float.parseFloat(binding.weight.getText().toString());
+        weight = Float.parseFloat(weight_txt.getText().toString());
 
     }
 
     private void CheckSeekbarStatus() {
 
-        binding.Seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SeekBar Seekbar = findViewById(R.id.Seekbar);
+        Seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 String ht = progress + getResources().getString(R.string.cm);
-                binding.heightTxt.setText(ht);
+                height_txt.setText(ht);
                 height = (float)(progress)/100;
             }
 
@@ -158,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         float BMI = weight / (height * height);
         Intent intent = new Intent(MainActivity.this,ResultActivity.class);
         intent.putExtra("BMI",BMI);
-        intent.putExtra("age",binding.age.getText().toString());
+        intent.putExtra("age",age.getText().toString());
         startActivity(intent);
     }
 }
