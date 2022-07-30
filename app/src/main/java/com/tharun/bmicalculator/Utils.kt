@@ -14,7 +14,7 @@ object Utils {
         return category
     }
 
-    fun getAdultCategory(result: Float): String {
+    private fun getAdultCategory(result: Float): String {
         val category: String = if (result < 15) {
             "Severe Thinness"
         } else if (result in 15.0..16.0) {
@@ -35,7 +35,7 @@ object Utils {
         return category
     }
 
-    fun getChildCategory(result: Float): String {
+    private fun getChildCategory(result: Float): String {
         val category: String = when {
             result < 15 -> {
                 "very severely underweight"

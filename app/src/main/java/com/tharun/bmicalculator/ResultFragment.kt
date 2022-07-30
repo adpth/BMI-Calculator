@@ -76,8 +76,8 @@ class ResultFragment : Fragment() {
 
             val strShareMessage = "Hello!! my BMI is ${bmi}\n\n" +
                     "my current condition: ${binding.condition.text}\n" +
-                    "my age is: ${binding.ageTxt.text}"
-                    "App suggested my that: ${binding.suggestion.text}"
+                    "my age is: ${binding.ageTxt.text}\n\n" +
+                    "App suggested me that: ${binding.suggestion.text}"
 
             val i = Intent(Intent.ACTION_SEND)
             i.putExtra(Intent.EXTRA_TEXT, strShareMessage)
